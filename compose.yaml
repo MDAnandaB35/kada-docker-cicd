@@ -1,5 +1,6 @@
 services:
   frontend:
+    image: mdanandab/frontend:latest
     build:
       context: frontend
       target: development
@@ -17,6 +18,7 @@ services:
 
   backend:
     restart: always
+    image: mdanandab:backend:latest
     build:
       context: backend
       target: development
