@@ -1,7 +1,8 @@
 name: Docker Build and Push
 on:
-push:
-branches: [ main ]
+  push:
+    branches:
+      - master
 jobs:
 build:
 runs-on: ubuntu-latest
