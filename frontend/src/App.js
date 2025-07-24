@@ -35,6 +35,17 @@ export default class App extends React.Component {
       .catch((e) => console.log("Error : ", e));
   };
 
+  handleDeleteTodo = (id) => {
+    axios
+      .delete(`/api/todos/${id}`)
+      .then(() => {
+        this.setState({
+          todos: this.state.todos.filter((todo) => todo._id !== id),
+        });
+      })
+      .catch((e) => console.log("Error : ", e));
+  };
+
   render() {
     return (
       <div className="App container">
@@ -44,7 +55,7 @@ export default class App extends React.Component {
               <h1>Todos</h1>
               <div className="todo-app">
                 <AddTodo handleAddTodo={this.handleAddTodo} />
-                <TodoList todos={this.state.todos} />
+                <TodoList todos={this.state.todos} handleDeleteTodo={this.handleDeleteTodo} />
               </div>
             </div>
           </div>

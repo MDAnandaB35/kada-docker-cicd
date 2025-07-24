@@ -30,6 +30,18 @@ export default class TodoList extends React.Component {
             }}
           >
             {todo.text}
+	    <button
+              className="btn btn-danger btn-sm float-right"
+              style={{ marginLeft: '10px' }}
+              onClick={e => {
+                e.stopPropagation();
+                if (this.props.handleDeleteTodo) {
+                  this.props.handleDeleteTodo(todo._id);
+                }
+              }}
+            >
+	      Delete
+            </button>
           </li>
         ))}
       </ul>

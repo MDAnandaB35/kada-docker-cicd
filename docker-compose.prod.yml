@@ -1,0 +1,37 @@
+version: '3'
+services:
+  backend:
+    image: mdanandab/backend:latest
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/TodoApp
+    depends_on:
+      - mongo
+    networks:
+      - express-mongo
+      - react-express
+    restart: always
+    ports:
+      - "5000:3000"
+  frontend:
+    image: mdanandab/frontend:latest
+    depends_on:
+      - backend
+    networks:
+      - react-express
+    restart: always
+    ports:
+      - "3000:80"
+  mongo:
+    image: mongo:4.2.0
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - express-mongo
+    restart: always
+    expose:
+      - 27017
+networks:
+  react-express:
+  express-mongo:
+volumes:
+  mongo_data:
